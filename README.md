@@ -1,5 +1,5 @@
 # wannaCrack
-this is a simple hash crack tool
+this is a simple hash cracking tool
 
 ## How to Download the tool
 git clone https://github.com/elliotosama/wannaCrack.git <br/>
