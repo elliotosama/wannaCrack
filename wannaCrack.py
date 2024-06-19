@@ -19,13 +19,31 @@ if(sys.argv[1] == '-h'):
 arguments = sys.argv
 path_to_wordlist = sys.argv[arguments.index('-w') + 1]
 path_to_hash_file = sys.argv[arguments.index('-f') + 1]
-hashType = sys.argv[arguments.index('-t') + 1]
-hashType.lower()
+#hashType = sys.argv[arguments.index('-t') + 1]
+#hashType.lower()
+hashType = ''
 
 wordlist = open(path_to_wordlist, 'r')
 hashedFile = open(path_to_hash_file, 'r')
 listOfWords = wordlist.readlines()
 hashOne = hashedFile.readline()
+hashOne.split()
+lengthOfTheHash = len(hashOne) - 1
+
+if (lengthOfTheHash == 32) :
+	hashType = 'md5'
+elif (lengthOfTheHash == 40) :
+	hashType = 'sha1'
+elif (lengthOfTheHash == 56):
+	hashType = 'sha224'
+elif(lengthOfTheHash == 64):
+	hashType = 'sha256'
+elif(lengthOfTheHash == 96):
+	hashType = 'sha384'
+else:
+	hashType = 'sha512'
+
+print (hashType	)
 if (len(listOfWords) == 0) :
 	cprint("[*] the wordlist you provided is blank", 'red')
 	sys.exit()

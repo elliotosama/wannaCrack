@@ -6,8 +6,8 @@ def printHelp():
 	print("./wannaCrack.py")
 	cprint("""options
 	-w wordlists
-	-f file contains plain text
 	-t hash type
+    Note: The tool Can Recognize The Type Of Hash
 """, 'green')
 	cprint("#" * 70, 'green')
 	cprint("the available hash types are", 'blue')
