@@ -2,10 +2,9 @@
 import hashlib
 from datetime import datetime
 import sys
-from termcolor import cprint
+from termcolor import cprint, colored
 import help
 import art
-from termcolor import colored
 from help import hashList
 banner = art.text2art("By: OsOs_elliot")
 cprint(banner, 'magenta')
@@ -19,8 +18,6 @@ if(sys.argv[1] == '-h'):
 arguments = sys.argv
 path_to_wordlist = sys.argv[arguments.index('-w') + 1]
 path_to_hash_file = sys.argv[arguments.index('-f') + 1]
-#hashType = sys.argv[arguments.index('-t') + 1]
-#hashType.lower()
 hashType = ''
 
 wordlist = open(path_to_wordlist, 'r')
@@ -43,6 +40,14 @@ elif(lengthOfTheHash == 96):
 else:
 	hashType = 'sha512'
 
+
+def progress_bar(current, total, bar_length=50):
+	progress = current / total
+	arrow = '>' * int(progress * bar_length)
+	spaces = ' ' * (bar_length - len(arrow))
+	print(f'\rProgress: [{arrow}{spaces}] {int(progress * 100)}%', end='', flush=True)
+
+
 print (hashType	)
 if (len(listOfWords) == 0) :
 	cprint("[*] the wordlist you provided is blank", 'red')
@@ -54,20 +59,24 @@ elif(hashType not in hashList):
 	cprint('[*] this hash is not available', 'red')
 	sys.exit()
 else:
-	cprint('[*] this operation will begin', 'dark_grey')
-	cprint('#' * 60, 'grey')
-
+	cprint(f'[*] the operation will begin at {datetime.now()}', 'dark_grey')
+	cprint('#' * 100, 'grey')
+	counter = 1
 	for i in listOfWords:
 		one = hashlib.new(hashType)
 		three = i.strip()
 		two = three.encode()
 		one.update(two)
 		final = one.hexdigest() + '\n'
+		progress_bar(counter + 1, len(listOfWords))
+		counter+=1
 		if (final == hashOne):
-			cprint("[*] hash found", 'green')
-			cprint("[*] " + i, 'green')
+			print()
+			print(colored("[#] Hash Found: ", 'green', attrs=['bold']), end='')
+			print(colored(i, 'green', attrs=['bold']))
 			sys.exit()
 
-cprint('[*] hash not found ', 'grey')
-cprint("#" * 60, 'grey')
+print()
+print(colored("[#] Hash Not Found", "red", attrs=['bold']))
+cprint("#" * 100, 'grey')
 cprint('[*] thanks for using my tool', 'light_blue')
