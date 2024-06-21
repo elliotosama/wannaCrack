@@ -6,7 +6,7 @@ def printHelp():
 	print("./wannaCrack.py")
 	cprint("""options
 	-w wordlists
-	-t hash type
+	-f file contains the hash
     Note: The tool Can Recognize The Type Of Hash
 """, 'green')
 	cprint("#" * 70, 'green')

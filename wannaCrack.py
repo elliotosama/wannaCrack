@@ -6,8 +6,12 @@ from termcolor import cprint, colored
 import help
 import art
 from help import hashList
-banner = art.text2art("By: OsOs_elliot")
+banner = art.text2art("Wanna Crack")
 cprint(banner, 'magenta')
+name = colored('Created By: Osama Ramadan','green', attrs=['bold'])
+print(f"""
+				{name}
+""")
 if (len(sys.argv) == 1):
 	print("./wannaCrack.py -h to get the help menu")
 	sys.exit()
@@ -48,7 +52,6 @@ def progress_bar(current, total, bar_length=50):
 	print(f'\rProgress: [{arrow}{spaces}] {int(progress * 100)}%', end='', flush=True)
 
 
-print (hashType	)
 if (len(listOfWords) == 0) :
 	cprint("[*] the wordlist you provided is blank", 'red')
 	sys.exit()
